@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="carManagement">
 <head>
 	<title>Car Management SPA on AngularJS</title>
 	<meta charset="utf-8">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script src="scripts/app.js"></script>
 </head>
 <body>
+	<div ng-repeat="car in cars">
+		<div>VIN: {{car.vin | uppercase}}</div>
+		<div>Make: {{car.make}}</div>
+		<div>Model: {{car.model}}</div>
+		<div>Year: {{car.year}}</div>
+		<div>Trim: {{car.trim || 'No info'}}</div>
+		<div>Body type: {{car.bodyType}}</div>
+		<div>Curb weight: {{car.curbWeight || 'No info'}}</div>
+	</div>
 </body>
 </html>
