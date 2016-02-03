@@ -64,10 +64,10 @@ angular
                                     vin:        vin,
                                     make:       response.makeName,
                                     model:      response.modelName,
-                                    year:       response.year,
+                                    year:       response.year + "",
                                     trim:       response.trim.name,
                                     bodyType:   response.categories.PRIMARY_BODY_TYPE[0],
-                                    curbWeight: +response.attributeGroups.SPECIFICATIONS.attributes.CURB_WEIGHT.value || undefined
+                                    curbWeight: response.attributeGroups.SPECIFICATIONS.attributes.CURB_WEIGHT.value
                                 };
                             resolve(car);
                         } catch(e) {
