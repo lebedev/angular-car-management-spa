@@ -13,6 +13,22 @@ angular
                 }
             });
         };
+        this.getCarByVIN = function(vin) {
+            return $q(function(resolve, reject) {
+                try {
+                    var cars = JSON.parse(localStorage.getItem('cars'));
+                    for (var i = 0, len = cars.length; i < len; i++) {
+                        if (cars[i].vin === vin) {
+                            resolve(cars[i]);
+                            return;
+                        }
+                    }
+                    resolve(null);
+                } catch(e) {
+                    reject(e);
+                }
+            });
+        };
     });
 
 })();
