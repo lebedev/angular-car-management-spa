@@ -29,6 +29,26 @@ angular
                 }
             });
         };
+        this.upsertCar = function(car) {
+            return $q(function(resolve, reject) {
+                try {
+                    var cars = JSON.parse(localStorage.getItem('cars'));
+                    for (var i = 0, len = cars.length; i < len; i++) {
+                        if (cars[i].vin === car.vin) {
+                            cars[i] = car;
+                            localStorage.setItem('cars', JSON.stringify(cars));
+                            resolve();
+                            return;
+                        }
+                    }
+                    cars.push(car);
+                    localStorage.setItem('cars', JSON.stringify(cars));
+                    resolve();
+                } catch(e) {
+                    reject(e);
+                }
+            });
+        };
     });
 
 })();
