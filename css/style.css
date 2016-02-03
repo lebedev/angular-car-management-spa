@@ -34,6 +34,10 @@
 	padding: 0 0 15px 15px;
 }
 
+.car .value {
+	padding-left: 0;
+}
+
 .panel-heading-with-sm-button h3 {
 	line-height: 30px;
 }
