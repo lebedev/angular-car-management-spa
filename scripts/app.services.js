@@ -49,6 +49,37 @@ angular
                 }
             });
         };
+        this.fetchCarFromEdmundsByVIN = function(vin) {
+            return $q(function(resolve, reject) {
+                var xhr = new XMLHttpRequest(),
+                    edmundsApiUrl = 'http://api.edmunds.com/v1/api/toolsrepository/vindecoder?fmt=json&api_key=9ez3tx9ms6tunncyvyah9pbr&vin=';
+                xhr.open('GET', edmundsApiUrl + vin, true);
+                xhr.onreadystatechange = function() {
+                    if (this.readyState < 4) {
+                        return;
+                    } else if (this.status === 200) {
+                        try {
+                            var response = JSON.parse(this.response).styleHolder[0],
+                                car = {
+                                    vin:        vin,
+                                    make:       response.makeName,
+                                    model:      response.modelName,
+                                    year:       response.year,
+                                    trim:       response.trim.name,
+                                    bodyType:   response.categories.PRIMARY_BODY_TYPE[0],
+                                    curbWeight: +response.attributeGroups.SPECIFICATIONS.attributes.CURB_WEIGHT.value || undefined
+                                };
+                            resolve(car);
+                        } catch(e) {
+                            reject(e);
+                        }
+                    } else {
+                        reject('There\'s no entries in Edmunds DB with that VIN.');
+                    }
+                };
+                xhr.send();
+            });
+        };
     });
 
 })();
