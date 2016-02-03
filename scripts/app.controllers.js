@@ -3,7 +3,8 @@
 
 angular
     .module('carManagement')
-    .controller('listCtrl', function(carService, $scope) {
+    .controller('listCtrl', function($rootScope, carService, $scope) {
+        $rootScope.changeTitleTo('List');
         carService.getCarsList()
             .then(function(cars) {
                 $scope.cars = cars;
