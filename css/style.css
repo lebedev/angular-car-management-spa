@@ -25,3 +25,11 @@
 	width: 100px;
 	z-index: 2;
 }
+
+.car-row {
+	margin-bottom: -15px;
+	margin-right: 0;
+}
+.car-row .car {
+	padding: 0 0 15px 15px;
+}
