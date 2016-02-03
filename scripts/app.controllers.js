@@ -3,9 +3,10 @@
 
 angular
     .module('carManagement')
-    .controller('listCtrl', function($rootScope, carService, $scope) {
+    .controller('listCtrl', function($rootScope, carService, $scope, $state) {
         $rootScope.changeTitleTo('List');
         $rootScope.setLockscreenStateTo(true);
+
         carService.getCarsList()
             .then(function(cars) {
                 $scope.cars = cars;
@@ -15,6 +16,30 @@ angular
                 console.log(error);
                 $rootScope.setLockscreenStateTo(false);
             });
+
+        $scope.addByVIN = function() {
+            var vin = prompt('Enter a car\'s VIN (17 characters [a-z0-9]):');
+            if (!vin) {
+                return;
+            }
+            if (/^[a-z\d]{17}$/i.test(vin)) {
+                $rootScope.setLockscreenStateTo(true);
+                carService.getCarByVIN(vin)
+                    .then(function(car) {
+                        console.log(car);
+                        if (car) {
+                            var openExisting = confirm('Car with that VIN is already in DB. Would you like to open it?');
+                            if (openExisting) {
+                                $state.go('show', {vin: vin});
+                            } else {
+                                $rootScope.setLockscreenStateTo(false);
+                            }
+                        }
+                    });
+            } else {
+                alert(vin + ' is incorrent VIN.');
+            }
+        };
     })
     .controller('showCtrl', function($stateParams, $rootScope, carService, $scope, $state) {
         $rootScope.setLockscreenStateTo(true);
