@@ -52,7 +52,7 @@ angular
         this.fetchCarFromEdmundsByVIN = function(vin) {
             return $q(function(resolve, reject) {
                 var xhr = new XMLHttpRequest(),
-                    edmundsApiUrl = 'http://api.edmunds.com/v1/api/toolsrepository/vindecoder?fmt=json&api_key=9ez3tx9ms6tunncyvyah9pbr&vin=';
+                    edmundsApiUrl = 'https://api.edmunds.com/v1/api/toolsrepository/vindecoder?fmt=json&api_key=9ez3tx9ms6tunncyvyah9pbr&vin=';
                 xhr.open('GET', edmundsApiUrl + vin, true);
                 xhr.onreadystatechange = function() {
                     if (this.readyState < 4) {
