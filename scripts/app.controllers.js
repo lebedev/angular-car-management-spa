@@ -73,13 +73,15 @@ angular
                     $scope.carPristine = car;
 
                     $scope.save = function() {
+                        $rootScope.setLockscreenStateTo(true);
                         carService.upsertCar($scope.car)
                             .then(function() {
                                 // Message about successful saving.
                                 $state.go('list');
                             })
                             .catch(function(error) {
-                                console.log(error);
+                                alert(error);
+                                $rootScope.setLockscreenStateTo(true);
                             });
                     };
 
