@@ -17,6 +17,15 @@ angular
                 $rootScope.setLockscreenStateTo(false);
             });
 
+        $scope.toggleSort = function(columnName) {
+            if ($scope.columnName === columnName) {
+                $scope.reverse = !$scope.reverse;
+            } else {
+                $scope.columnName = columnName;
+                $scope.reverse = false;
+            }
+        }
+
         $scope.addByVIN = function() {
             var validVins = [
                 '1N4AL2AP6CC000000',
