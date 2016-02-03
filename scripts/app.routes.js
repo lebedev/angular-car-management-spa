@@ -9,6 +9,11 @@ angular
                 url: '/list',
                 templateUrl: 'views/list.html',
                 controller: 'listCtrl'
+            })
+            .state('show', {
+                url: '/show/:vin',
+                templateUrl: 'views/showByVIN.html',
+                controller: 'showCtrl'
             });
         $urlRouterProvider.otherwise('/list');
     });
