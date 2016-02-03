@@ -18,7 +18,15 @@ angular
             });
 
         $scope.addByVIN = function() {
-            var vin = prompt('Enter a car\'s VIN (17 characters [a-z0-9]):');
+            var validVins = [
+                '1N4AL2AP6CC000000',
+                '1G1RD6E49BU100340',
+                '5YJSA1DP7DFP04612',
+                '3C3CFFBR2CT105421',
+                '1ZVBP8CF5B5161451'
+            ];
+            var vin = prompt('Enter a car\'s VIN (17 characters [a-z0-9]):\nOr you can use one of the following for testing: ' + validVins.join(', ') + '.');
+
             if (vin === null) {
                 return;
             }
