@@ -19,7 +19,7 @@ angular
 
         $scope.addByVIN = function() {
             var vin = prompt('Enter a car\'s VIN (17 characters [a-z0-9]):');
-            if (!vin) {
+            if (vin === null) {
                 return;
             }
             if (/^[a-z\d]{17}$/i.test(vin)) {
