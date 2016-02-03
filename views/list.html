@@ -5,10 +5,18 @@
 	<div class="panel-body">
 		<div class="row sort-row"><div class="col-md-12">
 			Sort by:
-			<button class="btn btn-default btn-xs" ng-click="toggleSort('vin')">VIN</button>
-			<button class="btn btn-default btn-xs" ng-click="toggleSort('make')">Make</button>
-			<button class="btn btn-default btn-xs" ng-click="toggleSort('model')">Model</button>
-			<button class="btn btn-default btn-xs" ng-click="toggleSort('year')">Year</button>
+			<button class="btn btn-default btn-xs"
+				ng-class="{ascending: columnName === 'vin' && !reverse, descending: columnName === 'vin' && reverse}"
+				ng-click="toggleSort('vin')">VIN</button>
+			<button class="btn btn-default btn-xs"
+				ng-class="{ascending: columnName === 'make' && !reverse, descending: columnName === 'make' && reverse}"
+				ng-click="toggleSort('make')">Make</button>
+			<button class="btn btn-default btn-xs"
+				ng-class="{ascending: columnName === 'model' && !reverse, descending: columnName === 'model' && reverse}"
+				ng-click="toggleSort('model')">Model</button>
+			<button class="btn btn-default btn-xs"
+				ng-class="{ascending: columnName === 'year' && !reverse, descending: columnName === 'year' && reverse}"
+				ng-click="toggleSort('year')">Year</button>
 		</div></div>
 		<div class="row car-row">
 			<div class="car col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="car in cars | orderBy:columnName:reverse">

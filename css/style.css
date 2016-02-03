@@ -30,6 +30,15 @@
 	padding-bottom: 15px;
 }
 
+.ascending::after {
+	content: '↓';
+	font-weight: bold;
+}
+.descending::after {
+	content: '↑';
+	font-weight: bold;
+}
+
 .car-row {
 	margin-bottom: -15px;
 	margin-right: 0;
