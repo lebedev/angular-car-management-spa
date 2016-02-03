@@ -3,7 +3,8 @@
 
 angular
     .module('carManagement', ['ui.router'])
-    .run(function() {
+    .run(function($rootScope) {
+        // Initial cars data setting.
         if (!localStorage.cars) {
             localStorage.cars = JSON.stringify([
                 {
@@ -26,6 +27,13 @@ angular
                 },
             ]);
         }
+
+        // Document title binding setting.
+        $rootScope.changeTitleTo = function(title) {
+            $rootScope.title = (title ? title + ': ' : '') + 'Car Management SPA on AngularJS';
+        };
+        $rootScope.changeTitleTo('');
+        document.title = '{{title}}';
     });
 
 })();
