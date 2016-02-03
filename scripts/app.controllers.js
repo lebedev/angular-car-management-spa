@@ -26,7 +26,6 @@ angular
                 $rootScope.setLockscreenStateTo(true);
                 carService.getCarByVIN(vin)
                     .then(function(car) {
-                        console.log(car);
                         if (car) {
                             var openExisting = confirm('Car with that VIN is already in DB. Would you like to open it?');
                             if (openExisting) {
@@ -34,10 +33,26 @@ angular
                             } else {
                                 $rootScope.setLockscreenStateTo(false);
                             }
+                        } else {
+                            carService.fetchCarFromEdmundsByVIN(vin)
+                                .then(function(car) {
+                                    carService.upsertCar(car)
+                                        .then(function() {
+                                            $state.go('show', {vin: vin});
+                                        })
+                                        .catch(function(error) {
+                                            $rootScope.setLockscreenStateTo(false);
+                                            alert(error);
+                                        });
+                                })
+                                .catch(function(error) {
+                                    $rootScope.setLockscreenStateTo(false);
+                                    alert(error);
+                                });
                         }
                     });
             } else {
-                alert(vin + ' is incorrent VIN.');
+                alert('"' + vin + '" is incorrent VIN.');
             }
         };
     })
@@ -70,8 +85,8 @@ angular
                 }
             })
             .catch(function(error) {
-                console.log(error);
                 $rootScope.setLockscreenStateTo(false);
+                alert(error);
             });
     });
 
