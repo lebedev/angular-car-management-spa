@@ -3,8 +3,14 @@
 
 angular
     .module('carManagement')
-    .controller('listCtrl', function($scope) {
-        $scope.cars = JSON.parse(localStorage.cars);
+    .controller('listCtrl', function(carService, $scope) {
+        carService.getCarsList()
+            .then(function(cars) {
+                $scope.cars = cars;
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
     });
 
 })();
