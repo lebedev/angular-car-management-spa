@@ -16,12 +16,12 @@
 	z-index: 1;
 }
 .lockscreen::after {
+	background-image: url(../images/loader.gif);
 	content: '';
 	height: 100px;
-	width: 100px;
-	position: fixed;
-	z-index: 2;
-	background-image: url(../images/loader.gif);
-	top: calc(50% - 50px);
 	left: calc(50% - 50px);
+	position: fixed;
+	top: calc(50% - 50px);
+	width: 100px;
+	z-index: 2;
 }
