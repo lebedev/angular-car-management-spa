@@ -5,8 +5,8 @@ angular
     .module('carManagement', ['ui.router'])
     .run(function($rootScope) {
         // Initial cars data setting.
-        if (!localStorage.cars) {
-            localStorage.cars = JSON.stringify([
+        if (!localStorage.getItem('cars')) {
+            localStorage.setItem('cars', JSON.stringify([
                 {
                     vin: '5tdxk3dc8bs093588',
                     make: 'Toyota',
@@ -25,7 +25,7 @@ angular
                     bodyType: 'Car',
                     curbWeight: undefined
                 },
-            ]);
+            ]));
         }
 
         // Document title binding setting.
