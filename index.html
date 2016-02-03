@@ -6,15 +6,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 	<script src="scripts/app.js"></script>
 </head>
-<body>
-	<div ng-repeat="car in cars">
-		<div>VIN: ...{{car.vin | uppercase | limitTo:7:-7}}</div>
-		<div>Make: {{car.make}}</div>
-		<div>Model: {{car.model}}</div>
-		<div>Year: {{car.year}}</div>
-		<div>Trim: {{car.trim || 'No info'}}</div>
-		<div>Body type: {{car.bodyType}}</div>
-		<div>Curb weight: {{car.curbWeight ? car.curbWeight + ' lbs.' : 'No info'}}</div>
-	</div>
+<body ui-view>
 </body>
 </html>
