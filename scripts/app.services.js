@@ -18,7 +18,7 @@ angular
                 try {
                     var cars = JSON.parse(localStorage.getItem('cars'));
                     for (var i = 0, len = cars.length; i < len; i++) {
-                        if (cars[i].vin === vin) {
+                        if (RegExp(vin, 'i').test(cars[i].vin)) {
                             resolve(cars[i]);
                             return;
                         }
@@ -34,7 +34,7 @@ angular
                 try {
                     var cars = JSON.parse(localStorage.getItem('cars'));
                     for (var i = 0, len = cars.length; i < len; i++) {
-                        if (cars[i].vin === car.vin) {
+                        if (RegExp(car.vin, 'i').test(cars[i].vin)) {
                             cars[i] = car;
                             localStorage.setItem('cars', JSON.stringify(cars));
                             resolve();
