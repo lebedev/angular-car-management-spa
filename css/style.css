@@ -1,3 +1,27 @@
 [ui-view] {
 	padding: 15px;
 }
+
+.lockscreen {
+	pointer-events: none;
+}
+.lockscreen::before {
+	background-color: rgba(0, 0, 0, 0.3);
+	bottom: 0;
+	content: '';
+	height: 100%;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+.lockscreen::after {
+	content: '';
+	height: 100px;
+	width: 100px;
+	position: fixed;
+	z-index: 2;
+	background-image: url(../images/loader.gif);
+	top: calc(50% - 50px);
+	left: calc(50% - 50px);
+}

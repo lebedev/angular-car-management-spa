@@ -34,6 +34,10 @@ angular
         };
         $rootScope.changeTitleTo('');
         document.title = '{{title}}';
+
+        $rootScope.setLockscreenStateTo = function(state) {
+            $rootScope.lockscreen = state;
+        };
     });
 
 })();
