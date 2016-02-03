@@ -3,7 +3,19 @@
 
 angular
     .module('carManagement', ['ui.router'])
-    .run(function($rootScope) {
+    .config(function($stateProvider, $urlRouterProvider) {
+        $stateProvider
+            .state('list', {
+                url: '/',
+                templateUrl: 'views/list.html',
+                controller: 'listCtrl'
+            });
+        $urlRouterProvider.otherwise('/');
+    })
+    .controller('listCtrl', function($scope) {
+        $scope.cars = JSON.parse(localStorage.cars);
+    })
+    .run(function() {
         if (!localStorage.cars) {
             localStorage.cars = JSON.stringify([
                 {
@@ -26,7 +38,6 @@ angular
                 },
             ]);
         }
-        $rootScope.cars = JSON.parse(localStorage.cars);
     });
 
 })();
